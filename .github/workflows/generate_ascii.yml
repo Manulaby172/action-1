@@ -15,3 +15,42 @@ jobs:
           run: |
             chmod +x .github/workflows/ascii_script.sh
             .github/workflows/ascii_script.sh
+        
+        - name: Upload dragon text file
+          uses: actions/upload-artifact@v7
+          with:
+              # Name of the artifact to upload.
+              # Optional. Default is 'artifact'
+              name: Dragon Text file
+          
+              # A file, directory or wildcard pattern that describes what to upload
+              # Required.
+              path: dragon.txt
+
+    Second_jobs:
+
+      needs: ascii_jobs
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: download dragon text file
+        uses: actions/download-artifact@v8
+        with:
+           
+            name: Dragon Text file
+        
+      - name: Test file exists
+        run: grep -i "dragon" dragon.txt
+
+    Third_Jobs:
+      needs: [Second_jobs]
+      runs-on: ubuntu-latest
+      steps:
+      - name: download dragon text file
+        uses: actions/download-artifact@v8
+        with:
+           
+            name: Dragon Text file
+            
+      - name: read text
+        run: cat dragon.txt
