@@ -11,7 +11,7 @@ jobs:
           
         - name: List and Read file
           run: |
-            echo "My first GITHUB Actions"
+            echo "My first GITHUB ActionsSS"
             ls -ltra
             cat README.md
         
