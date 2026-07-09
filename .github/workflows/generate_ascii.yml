@@ -43,6 +43,9 @@ jobs:
         run: grep -i "dragon" dragon.txt
 
     Third_Jobs:
+      concurrency: 
+         cancel-in-progress: 
+      timeout-minutes: 
       needs: [Second_jobs]
       runs-on: ubuntu-latest
       steps:
